@@ -7,8 +7,9 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
         body {
-            background-color: #121212; /* Dark background */
-            color: #ffffff; /* Light text color */
+            background-color: #ffffff; /* Light background */
+            color: #000000; /* Dark text color */
+            font-family: 'Comic Sans MS', sans-serif; /* Comic Sans MS font */
         }
         .image-container {
             display: flex;
@@ -20,14 +21,19 @@
         img {
             max-width: 100%; /* Take the full width of the container */
             max-height: 80vh; /* Keep the image within viewport height */
-            border: 3px solid #ffffff; /* Optional border for contrast */
+            border: 3px solid #000000; /* Optional border for contrast */
             border-radius: 5px;
+            transition: transform 0.3s ease-in-out; /* Smooth zoom effect on hover */
+        }
+        img:hover {
+            transform: scale(1.05); /* Slight zoom effect on hover */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Light shadow */
         }
         p {
             text-align: center;
             margin-top: 20px;
             font-size: 1.2rem;
-            color: #adb5bd; /* Slightly lighter text for description */
+            color: #495057; /* Slightly darker text for description */
         }
         .btn-dark {
             background-color: #6c757d;
@@ -37,9 +43,65 @@
         .btn-dark:hover {
             background-color: #495057;
         }
+        .footer {
+            background-color: rgba(0, 0, 0, 0.5); /* Translucent dark background */
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            font-family: 'Comic Sans MS', cursive; /* Apply Comic Sans MS font */
+        }
+        .footer .social-icons i {
+            font-size: 24px;
+            margin: 0 10px;
+            color: #ffffff;
+            transition: color 0.3s;
+        }
+        .footer .social-icons i:hover {
+            color: #6a89cc;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .social-icons a {
+            color: #ffffff;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        .social-icons a:hover {
+            color: #adb5bd; /* Light grey when hovered */
+        }
+        /* Dark Mode Toggle Button */
+        .btn-fancy {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            font-size: 1.5em; /* Larger icon size */
+            transition: background-color 0.3s;
+        }
+        .btn-fancy:hover {
+            background-color: #343a40;
+        }
+        /* Dark Mode Styles */
+        .dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body class="m-5">
+    <button id="toggleMode" class="btn btn-fancy">
+        <i class="fas fa-adjust"></i> <!-- Fancy moon/sun toggle icon -->
+    </button>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col text-center">
@@ -51,5 +113,34 @@
         </div>
     </div>
 </div>
+
+<footer class="footer">
+    <div class="container">
+        <p>Connect with us:</p>
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/xxxxxxxxxx" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p>&copy; 2024 Art Haven. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // JavaScript to toggle dark mode
+    const toggleButton = document.getElementById('toggleMode');
+    const body = document.body;
+
+    toggleButton.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+            toggleButton.innerHTML = '<i class="fas fa-sun"></i>'; // Change icon to sun for light mode
+        } else {
+            toggleButton.innerHTML = '<i class="fas fa-adjust"></i>'; // Change icon back to moon for dark mode
+        }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script> <!-- Latest Font Awesome -->
 </body>
 </html>
